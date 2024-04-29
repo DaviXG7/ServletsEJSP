@@ -26,8 +26,9 @@ public class DBManager {
 
     public static SessionModel getUser(String usuario, String senha) throws SQLException {
 
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contas WHERE senha = ?");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contas WHERE senha = ? AND nome = ?");
         preparedStatement.setString(1, senha);
+        preparedStatement.setString(2, usuario);
         ResultSet resultSet = preparedStatement.executeQuery();
 
         if (!resultSet.next()) {

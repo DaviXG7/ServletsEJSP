@@ -21,6 +21,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nome = request.getParameter("nome");
         String senha = request.getParameter("senha");
+        System.out.println(nome);
         if (nome == null || senha == null ||
                 nome.isBlank() || senha.isEmpty()) {
 
@@ -47,9 +48,12 @@ public class LoginServlet extends HttpServlet {
             rd.forward(request,response);
             return;
         }
+
+        System.out.println(model.getNome());
         RequestDispatcher rd = request.getRequestDispatcher("/home/principal.jsp");
         request.getSession().setAttribute("user", model);
         rd.forward(request,response);
+        response.sendRedirect("/home/principal.jsp");
 
 
 
